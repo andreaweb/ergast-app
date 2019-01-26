@@ -45,7 +45,30 @@ class App extends Component {
   render() {
     return (
         <div className="container">
-        { this.state.champions[10] && this.state.champions[4].name}
+          <table>
+            <thead>
+              <tr>
+                <td>Year</td>
+                <td>Champion&apos;s Name</td>
+                <td>Champion&apos;s Constructor</td>
+                <td>Races Won</td>
+              </tr>
+            </thead>
+            <tbody>  
+              {
+                this.state.champions.length === 11
+                && this.state.champions.map(
+                  (ch, key) => 
+                    <tr key={key}>
+                      <td>{ch.year}</td>
+                      <td>{ch.name}</td>
+                      <td>{ch.constructorName}</td>
+                      <td>{ch.racesWon}</td>
+                    </tr>
+                )
+              }
+            </tbody>
+          </table>
         </div>
     );
   }
