@@ -1,3 +1,56 @@
 @import "variables";
 @import "normalize";
 @import "utilities";
+
+.container{
+	background: $gray;
+	color: #fff;
+	padding: 5vw;
+	height: 100vh;
+}
+
+.table{
+	width: 100%;
+}
+.table thead tr{
+	background: $black;
+}
+.table tr{
+	background: $blue;
+}
+.table td{
+	padding: 10px;
+}
+td.adjust{
+	padding: 10px 0 10px 33px
+}
+
+.button{
+	background: $red;
+	border: 3px solid transparent;
+	border-radius: 5px;
+	padding: 12px 20px;
+	display: inline-block;
+}
+
+.button:hover,
+.button:active,
+.button:focus{
+	background: transparent;
+	border-color: $red;
+}
+
+.remove-link-styles{
+	text-decoration: none;
+	color: inherit;
+}
+
+.champion-row{
+	background: $purple;
+}
+
+@media screen and (min-width: 1200px){
+	.container{
+		padding: 2vw;
+	}
+}
