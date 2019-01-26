@@ -15,6 +15,7 @@ class ChampionsTable extends Component {
 
   getChampionsData(){
     let championsArr = [];
+    this.setState({loading: true});
     this.years.forEach(
       year => fetch('http://ergast.com/api/f1/'+year+'/driverStandings/1.json')
       .then(response => response.json())
@@ -29,18 +30,18 @@ class ChampionsTable extends Component {
               constructorName: standingsList.DriverStandings[0].Constructors[0].name
           };
           championsArr.push(yearWinner);
-          if(championsArr.length === 11){
+          if(championsArr.length === this.years.length){
             championsArr.sort((a,b) => a.year - b.year);
             this.setChampions(championsArr);
           }
         }
       )
-      .catch(error => console.error(error))   
+      .catch(error => this.setState({loading: false, error: error}))   
     );
   }
 
   setChampions = (champions) => {
-    this.setState({champions});
+    this.setState({champions, loading: false});
   }
 
   render() {
@@ -54,9 +55,16 @@ class ChampionsTable extends Component {
             <td>Races Won</td>
           </tr>
         </thead>
-        <tbody>  
+        <tbody> 
           {
-            this.state.champions.length === 11
+            this.state.error && 
+              <p className="error">Error: {this.state.error.message}</p>
+          } 
+          {
+            this.state.loading && <p>Loading</p>
+          }
+          {
+            this.state.champions.length === this.years.length
             && this.state.champions.map(
               (ch, key) => 
                 <tr key={key}>
