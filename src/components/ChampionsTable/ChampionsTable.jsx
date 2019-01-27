@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import './ChampionsTable.scss';
+import Loading from '../../svg/Loading';
+import './ChampionsTable.scss';
 
 class ChampionsTable extends Component {
   constructor(props){
@@ -46,44 +47,46 @@ class ChampionsTable extends Component {
 
   render() {
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            <td className="adjust">Year</td>
-            <td>Champion&apos;s Name</td>
-            <td>Champion&apos;s Constructor</td>
-            <td>Races Won</td>
-          </tr>
-        </thead>
-        <tbody> 
-          {
-            this.state.error && 
-              <p className="error">Error: {this.state.error.message}</p>
-          } 
-          {
-            this.state.loading && <p>Loading</p>
-          }
-          {
-            this.state.champions.length === this.years.length
-            && this.state.champions.map(
-              (ch, key) => 
-                <tr key={key}>
-                  <td>
-                    <Link 
-                      className="button remove-link-styles" 
-                      to={`/season/${ch.year}/${ch.name}`}
-                    >
-                      {ch.year}
-                    </Link>
-                  </td>
-                  <td>{ch.name}</td>
-                  <td>{ch.constructorName}</td>
-                  <td>{ch.racesWon}</td>
-                </tr>
-            )
-          }
-        </tbody>
-      </table>
+      <main>
+        <table className="table">
+          <thead>
+            <tr>
+              <td className="adjust">Year</td>
+              <td>Champion&apos;s Name</td>
+              <td>Champion&apos;s Constructor</td>
+              <td>Races Won</td>
+            </tr>
+          </thead>
+          <tbody> 
+            {
+              this.state.champions.length === this.years.length
+              && this.state.champions.map(
+                (ch, key) => 
+                  <tr key={key}>
+                    <td>
+                      <Link 
+                        className="button remove-link-styles" 
+                        to={`/season/${ch.year}/${ch.name}`}
+                      >
+                        {ch.year}
+                      </Link>
+                    </td>
+                    <td>{ch.name}</td>
+                    <td>{ch.constructorName}</td>
+                    <td>{ch.racesWon}</td>
+                  </tr>
+              )
+            }
+          </tbody>
+        </table>
+        {
+          this.state.error && 
+            <p className="error">Error: {this.state.error.message}</p>
+        } 
+        {
+          this.state.loading && <Loading />
+        }
+      </main>
     );
   }
 }

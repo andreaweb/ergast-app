@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Proptypes from 'prop-types';
-// import { Link } from 'react-router-dom';
-// import './SeasonTable.scss';
+import { Link } from 'react-router-dom';
+import Loading from '../../svg/Loading';
+import './SeasonTable.scss';
 
 class SeasonTable extends Component {
   constructor(props){
@@ -50,40 +51,43 @@ class SeasonTable extends Component {
 
   render() {
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            <td className="adjust">Round</td>
-            <td>Champion&apos;s Name</td>
-            <td>Race Name</td>
-          </tr>
-        </thead>
-        <tbody>  
-          {
-            this.state.error && 
-              <p className="error">Error: {this.state.error.message}</p>
-          } 
-          {
-            this.state.loading && <p>Loading</p>
-          }
-         { this.state.races && this.state.races.map(
-              (rc, key) => 
-                <tr 
-                  key={key} 
-                  className={
-                    this.props.match.params.driver === rc.name ? 'champion-row' : null
-                  }
-                >
-                  <td className="adjust">{rc.round}</td>
-                  <td>
-                    {rc.name}
-                  </td>
-                  <td>{rc.raceName}</td>
-                </tr>
-            )
-          }
-        </tbody>
-      </table>
+      <main>
+        <Link to="/" className="link">Back to homepage</Link>
+        <table className="table">
+          <thead>
+            <tr>
+              <td className="adjust">Round</td>
+              <td>Champion&apos;s Name</td>
+              <td>Race Name</td>
+            </tr>
+          </thead>
+          <tbody>   
+           { this.state.races && this.state.races.map(
+                (rc, key) => 
+                  <tr 
+                    key={key} 
+                    className={
+                      this.props.match.params.driver === rc.name ? 'champion-row' : null
+                    }
+                  >
+                    <td className="adjust">{rc.round}</td>
+                    <td>
+                      {rc.name}
+                    </td>
+                    <td>{rc.raceName}</td>
+                  </tr>
+              )
+            }
+          </tbody>
+        </table>
+        {
+          this.state.error && 
+            <p className="error">Error: {this.state.error.message}</p>
+        } 
+        {
+          this.state.loading && <Loading />
+        }
+      </main>
     );
   }
 }

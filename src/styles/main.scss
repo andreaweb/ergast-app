@@ -23,7 +23,7 @@
 	padding: 10px;
 }
 td.adjust{
-	padding: 10px 0 10px 33px
+	padding: 6px 0 8px 15px
 }
 
 .button{
@@ -56,8 +56,34 @@ tr.champion-row{
 	background: $purple;
 }
 
+.link{
+  color: $red;
+  padding: 0px 0 10px 30px;
+  display: block;
+}
+
+.loading{
+  left: calc(50% - 48px);
+  position: relative;
+  top: 115px;
+  animation: spin 4s infinite linear;
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
 @media screen and (min-width: 1200px){
 	.container{
 		padding: 2vw;
+	}
+	td.adjust{
+		padding: 10px 0 10px 33px
 	}
 }
