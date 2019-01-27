@@ -69,7 +69,10 @@ class ChampionsTable extends Component {
               (ch, key) => 
                 <tr key={key}>
                   <td>
-                    <Link className="button remove-link-styles" to="/season">
+                    <Link 
+                      className="button remove-link-styles" 
+                      to={`/season/${ch.year}/${ch.name}`}
+                    >
                       {ch.year}
                     </Link>
                   </td>

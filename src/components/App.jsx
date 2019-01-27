@@ -10,8 +10,8 @@ class App extends Component {
       <Router>
         <div className="container">
           <Switch>
-            <Route exact path="/" render={(props)=> <ChampionsTable {...props} />}/>
-            <Route exact path="/season" render={()=><SeasonTable />}/>
+            <Route exact path="/" render={()=> <ChampionsTable />}/>
+            <Route exact path="/season/:year/:driver" render={(props)=><SeasonTable {...props}/>}/>
           </Switch>
         </div>
       </Router>
