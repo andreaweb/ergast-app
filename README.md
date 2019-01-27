@@ -1,4 +1,4 @@
-##Ergast App
+## Ergast App
 
 Install with ```yarn install```
 
