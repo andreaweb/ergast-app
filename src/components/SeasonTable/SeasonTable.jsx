@@ -93,7 +93,7 @@ class SeasonTable extends Component {
 }
 
 SeasonTable.propTypes = {
-  match: Proptypes.object
+  match: Proptypes.object.isRequired
 };
 
 export default SeasonTable;
